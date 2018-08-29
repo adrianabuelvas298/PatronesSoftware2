@@ -26,13 +26,24 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 ![imagen](/Imagenes/imagen1.PNG)
 
 - Singleton
-![imagen](/Imagenes/imagen2.PNG)
+![imagen](/Imagenes/imagen2.png)
 - Buldier
-![imagen](/Imagenes/imagen3.PNG)
+![imagen](/Imagenes/imagen3.png)
 - Factory
-![imagen](/Imagenes/imagen4.PNG)
+
+**Problema y Contexto:**
+
+Crear diferentes familias de objetos abstrayéndonos de los detalles de su creación.
+
+**Se aplica cuando:**
+
+* Hay previsión de que se incluirán nuevas familias de objetos.
+* Existe dependencia (teórica) entre los tipos de objetos
+
+![imagen](/Imagenes/imagen4.png)
+
 - Prototype
-![imagen](/Imagenes/imagen5.PNG)
+![imagen](/Imagenes/imagen5.png)
 
 # Bibliografía
 
