@@ -23,7 +23,7 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 
 * **De comportamiento:** Caracterizan las formas en las que interactúan y reparten responsabilidades las distintas clases u objetos.
 
-![imagen](https://github.com/adrianabuelvas298/PatronesSoftware2/blob/master/Imagenes/imagen1.PNG)
+![imagen](/Imagenes/imagen1.PNG)
 
 
 
