@@ -25,11 +25,11 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 
 ![imagen](/Imagenes/imagen1.PNG)
 
-- Singleton
+# Singleton
 ![imagen](/Imagenes/imagen2.png)
-- Buldier
+# Buldier
 ![imagen](/Imagenes/imagen3.png)
-- Factory
+# Factory
 
 **Problema y Contexto:**
 
@@ -42,7 +42,7 @@ Crear diferentes familias de objetos abstrayéndonos de los detalles de su creac
 
 ![imagen](/Imagenes/imagen4.png)
 
-- Prototype
+# Prototype
 ![imagen](/Imagenes/imagen5.png)
 
 # Bibliografía
