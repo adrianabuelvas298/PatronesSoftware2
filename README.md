@@ -87,3 +87,4 @@ El patrón prototype tiene un objetivo muy sencillo: crear a partir de un modelo
 * https://programacion.net/articulo/patrones_de_diseno_iii_patrones_de_creacion_builder_1002
 * https://gist.github.com/pazdera/1121157
 * https://informaticapc.com/patrones-de-diseno/singleton.php
+* https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Factory.html
