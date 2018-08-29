@@ -29,7 +29,8 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 
 Utilizaremos el patrón Singleton cuando por alguna razón necesitemos que exista sólo una instancia **(un objeto)** de una determinada Clase.
 
-Dicha clase se creará de forma que tenga una propiedad estática y un constructor privado, así como un método público estático que será el encargado de crear la instancia **(cuando no exista)** y guardar una referencia a la misma en la propiedad estática **(devolviendo ésta)**.
+Dicha clase se creará de forma que tenga una propiedad estática y un constructor privado, así como un método público estático que será el encargado de crear la instancia **(cuando no exista)** y guardar una referencia a la misma en la propiedad estática **(devolviendo ésta)**
+
 
 ![imagen](/Imagenes/imagen2.png)
 
