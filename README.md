@@ -2,6 +2,10 @@
 
 ## Introducción
 
+Cada patrón describe un problema que ocurre una y otra vez en nuestro entorno y describe también el núcleo de 
+la solución al problema, de forma que puede utilizarse un millón de veces sin tener que hacer dos veces lo mismo.
+
+
 El diseño OO es difícil y el diseño de software orientado a objetos reutilizable lo es aún más.
 
 Los diseñadores expertos no resuelven los problemas desde sus principios; reutilizan soluciones que han funcionado en el pasado.
