@@ -27,8 +27,21 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 
 # Singleton
 ![imagen](/Imagenes/imagen2.png)
+
+
 # Buldier
+
+**Problema y Contexto:**
+
+Un único proceso de construcción debe ser capaz de construir distintos objetos complejos, abstrayéndonos de los detalles particulares de cada uno de los tipos.
+
+**Se aplica cuando:**
+
+* Nuestro sistema trata con objetos complejos (compuestos por muchos atributos) pero el número de configuraciones es limitada.
+* El algoritmo de creación del objeto complejo puede independizarse de las partes que lo componen y del ensamblado de las mismas.
+
 ![imagen](/Imagenes/imagen3.png)
+
 # Factory
 
 **Problema y Contexto:**
@@ -57,4 +70,5 @@ El patrón prototype tiene un objetivo muy sencillo: crear a partir de un modelo
 # Bibliografía
 
 * https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Singleton.html
-* http://migranitodejava.blogspot.com/2011/05/prototype.html
+* https://gist.github.com/pazdera/1122366
+* 
