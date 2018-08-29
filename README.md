@@ -1,14 +1,14 @@
-# PatronesSoftware2
-
-##Explicación de patrones de diseño
-
-#Patrones de diseño
+# Patrones de diseño
 
 ## Introducción
 
-Los patrones de diseño son unas técnicas para resolver problemas comunes en el desarrollo de software y otros ámbitos referentes al diseño de interacción o interfaces.
+El diseño OO es difícil y el diseño de software orientado a objetos reutilizable lo es aún más.
 
-Un patrón de diseño resulta ser una solución a un problema de diseño. Para que una solución sea considerada un patrón debe poseer ciertas características. Una de ellas es que debe haber comprobado su efectividad resolviendo problemas similares en ocasiones anteriores. Otra es que debe ser reutilizable, lo que significa que es aplicable a diferentes problemas de diseño en distintas circunstancias.
+Los diseñadores expertos no resuelven los problemas desde sus principios; reutilizan soluciones que han funcionado en el pasado.
+
+– Se encuentran patrones de clases y objetos de comunicación recurrentes en muchos sistemas orientados a objetos.
+– Estos patrones resuelven problemas de diseño específicos y hacen el diseño flexible y reusable.
+
 
 
 
