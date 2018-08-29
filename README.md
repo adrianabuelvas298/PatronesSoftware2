@@ -25,5 +25,16 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 
 ![imagen](/Imagenes/imagen1.PNG)
 
+- Singleton
+![imagen](/Imagenes/imagen2.PNG)
+- Buldier
+![imagen](/Imagenes/imagen3.PNG)
+- Factory
+![imagen](/Imagenes/imagen4.PNG)
+- Prototype
+![imagen](/Imagenes/imagen5.PNG)
 
+# Bibliografía
+
+* https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Singleton.html
 
