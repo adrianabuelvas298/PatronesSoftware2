@@ -57,4 +57,4 @@ El patrón prototype tiene un objetivo muy sencillo: crear a partir de un modelo
 # Bibliografía
 
 * https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Singleton.html
-
+* http://migranitodejava.blogspot.com/2011/05/prototype.html
