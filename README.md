@@ -27,7 +27,9 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 
 # Singleton
 
+Utilizaremos el patrón Singleton cuando por alguna razón necesitemos que exista sólo una instancia **(un objeto)** de una determinada Clase.
 
+Dicha clase se creará de forma que tenga una propiedad estática y un constructor privado, así como un método público estático que será el encargado de crear la instancia **(cuando no exista)** y guardar una referencia a la misma en la propiedad estática **(devolviendo ésta)**.
 
 ![imagen](/Imagenes/imagen2.png)
 
@@ -75,4 +77,5 @@ El patrón prototype tiene un objetivo muy sencillo: crear a partir de un modelo
 * https://python-3-patterns-idioms-test.readthedocs.io/en/latest/Singleton.html
 * https://gist.github.com/pazdera/1122366
 * https://programacion.net/articulo/patrones_de_diseno_iii_patrones_de_creacion_builder_1002
-* 
+* https://gist.github.com/pazdera/1121157
+* https://informaticapc.com/patrones-de-diseno/singleton.php
