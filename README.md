@@ -14,6 +14,16 @@ Los diseñadores expertos no resuelven los problemas desde sus principios; reuti
 
 * Estos patrones resuelven problemas de diseño específicos y hacen el diseño flexible y reusable.
 
+## Clasificación de los patrones
+
+**Según su propósito:**
+
+* **De creación:** Conciernen al proceso de creación de objetos.
+
+* **De estructura:** Tratan la composición de clases y/o objetos.
+
+* **De comportamiento:** Caracterizan las formas en las que interactúan y reparten responsabilidades las distintas clases u objetos.
+
 
 
 
