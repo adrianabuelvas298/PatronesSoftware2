@@ -1,102 +1,78 @@
+#Referencias: https://github.com/jackdbd/design-patterns/blob/master/prototype.py
+
 import copy
+from collections import OrderedDict
 
-class Prototype:
+"""
+Especificamos los tipos de objetos para crear usando una instancia
+y crea nuevos objetos copiando ese prototipo.
+"""
 
-    """ Object, that can be cloned.
-    This is just a base class, so the clone() method
-    is not implemented. But all subclasses have to
-    override it.
-    """
+class Book:
+    def __init__(self, name, authors, price, **kwargs):
+        #Ejemplos de kwargs: editor, longitud, etiquetas, fecha de publicación
+        self.name = name
+        self.authors = authors
+        self.price = price
+        self.__dict__.update(kwargs)
 
-    _type  = None
-    _value = None
-
-    def clone(self):
-        pass
-
-    def getType(self):
-        return self._type
-
-    def getValue(self):
-        return self._value
-
-class Type1(Prototype):
-
-    """ Concrete prototype.
+    def __str__(self):
+        mylist = []
+        ordered = OrderedDict(sorted(self.__dict__.items()))
+        for i in ordered.keys():
+            mylist.append("{}: {}".format(i, ordered[i]))
+            if i == "price":
+                mylist.append("$")
+            mylist.append("\n")
+        return "".join(mylist)
     
-    Implementation of Prototype. Important part is the
-    clone() method.
-    """
+class Prototype: #Encapsulamos en un Factory
+    def __init__(self):
+        self.objects = dict()
 
-    def __init__(self, number):
-        self._type = "Type1"
-        self._value = number
+    def register(self, identifier, obj):
+        self.objects[identifier] = obj
 
-    def clone(self):
-        return copy.copy(self)
+    def unregister(self, identifier):
+        del self.objects[identifier]
 
-class Type2(Prototype):
-    """ Concrete prototype. """
+    def clone(self, identifier, **attr): # metodo para clonar
+        found = self.objects.get(identifier)
+        if not found:
+            raise ValueError("Incorrect object identifier: {}".format(identifier))
 
-    def __init__(self, number):
-        self._type = "Type2"
-        self._value = number
-
-    def clone(self):
-        return copy.copy(self)
-
-class ObjectFactory:
-
-    """ Manages prototypes.
-    Static factory, that encapsulates prototype
-    initialization and then allows instatiation
-    of the classes from these prototypes.
-    """
-
-    __type1Value1 = None
-    __type1Value2 = None
-    __type2Value1 = None
-    __type2Value2 = None
-
-    @staticmethod
-    def initialize():
-        ObjectFactory.__type1Value1 = Type1(1)
-        ObjectFactory.__type1Value2 = Type1(2)
-        ObjectFactory.__type2Value1 = Type2(1)
-        ObjectFactory.__type2Value2 = Type2(2)
-        
-    @staticmethod
-    def getType1Value1():
-        return ObjectFactory.__type1Value1.clone()
-
-    @staticmethod
-    def getType1Value2():
-        return ObjectFactory.__type1Value2.clone()
-
-    @staticmethod
-    def getType2Value1():
-        return ObjectFactory.__type2Value1.clone()
-
-    @staticmethod
-    def getType2Value2():
-        return ObjectFactory.__type2Value2.clone()
-
+            obj = copy.deepcopy(found)
+        obj.__dict__.update(attr)
+        return obj
 
 def main():
-    ObjectFactory.initialize()
+    b1 = Book(
+        name="The C Programming Language",
+        authors=("Brian W. Kernighan", "Dennis M.Ritchie"),
+        price=118,
+        publisher="Prentice Hall",
+        length=228,
+        publication_date="1978-02-22",
+        tags=("C", "programming", "algorithms", "data structures"),
+    )
 
-    instance = ObjectFactory.getType1Value1()
-    print "%s: %s" % (instance.getType(), instance.getValue())
+    prototype = Prototype()
+    cid = "k&r-first"
+    prototype.register(cid, b1)
+    b2 = prototype.clone(
+        cid,
+        name="The C Programming Language (ANSI)",
+        price=48.99,
+        length=274,
+        publication_date="1988-04-01",
+        edition=2,
+    )
 
-    instance = ObjectFactory.getType1Value2()
-    print "%s: %s" % (instance.getType(), instance.getValue())
+    for i in (b1, b2):
+        print(i)
 
-    instance = ObjectFactory.getType2Value1()
-    print "%s: %s" % (instance.getType(), instance.getValue())
-
-    instance = ObjectFactory.getType2Value2()
-    print "%s: %s" % (instance.getType(), instance.getValue())
+    print("ID b1 : {} != ID b2 : {}".format(id(b1), id(b2)))
 
 
 if __name__ == "__main__":
-main()
+    main()
