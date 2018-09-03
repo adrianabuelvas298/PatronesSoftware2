@@ -1,149 +1,139 @@
-class Director:
-    
-    """ Controls the construction process.
-    Director has a builder associated with him. Director then
-    delegates building of the smaller parts to the builder and
-    assembles them together.
+# Referencias: https://github.com/jackdbd/design-patterns/blob/master/builder.py
+
+"""
+El patrón Builder separa la construcción de un objeto complejo de su
+representación para que el mismo proceso de construcción pueda crear diferentes
+representaciones.
+"""
+from abc import ABC, abstractmethod
+
+
+class IceCream(ABC):
+    # Clase abstracta
+
+    @property
+    def need_spoon(self):
+        return False
+
+    def __str__(self):
+        string = self.__class__.__name__
+        for key, value in self.__dict__.items():
+            string += "\n{}: {}".format(key, value)
+        string += "\n"
+        return string
+
+
+class ConeIceCream(IceCream):
+    """Concrete Product 1."""
+
+    pass
+
+
+class CupIceCream(IceCream):
+    """Concrete Product 2."""
+
+    @property
+    def need_spoon(self):
+        return True
+
+
+class Builder(ABC):
+    """
+    Especifique la interfaz abstracta que crea todas las partes del producto.
+    Esta interfaz abstracta es utilizada por un objeto Director. Todos los métodos excepto
+    "get_product" regresa a sí mismo, por lo que esta clase es una "interfaz fluida".
     """
 
-    __builder = None
+    @abstractmethod
+    def __init__(self):
+        self.product = None
+        self.toppings = None
 
-    def setBuilder(self, builder):
-        self.__builder = builder
+    def set_flavors(self, flavors):
+        self.product.flavors = flavors
+        return self
 
-    # The algorithm for assembling a car
-    def getCar(self):
-        car = Car()
+    def set_toppings(self):
+        if self.toppings is not None:
+            self.product.toppings = self.toppings
+        return self
 
-        # First goes the body
-        body = self.__builder.getBody()
-        car.setBody(body)
+    def add_spoon(self):
+        if self.product.need_spoon:
+            self.product.spoon = 1
+        return self
 
-        # Then engine
-        engine = self.__builder.getEngine()
-        car.setEngine(engine)
+    def get_product(self):
+        return self.product
 
-        # And four wheels
-        i = 0
-        while i < 4:
-            wheel = self.__builder.getWheel()
-            car.attachWheel(wheel)
-            i += 1
 
-        return car
-
-# The whole product
-class Car:
-    
-    """ The final product.
-    A car is assembled by the `Director' class from
-    parts made by `Builder'. Both these classes have
-    influence on the resulting object.
+class ConeIceCreamBuilder(Builder):
+    """Concrete Builder 1.
+    Esta clase ensambla el producto implementando la interfaz de Builder.
+    Define y realiza un seguimiento de la representación que crea.
     """
 
     def __init__(self):
-        self.__wheels  = list()
-        self.__engine  = None
-        self.__body    = None
-
-    def setBody(self, body):
-        self.__body = body
-
-    def attachWheel(self, wheel):
-        self.__wheels.append(wheel)
-
-    def setEngine(self, engine):
-        self.__engine = engine
-
-    def specification(self):
-        print "body: %s" % self.__body.shape
-        print "engine horsepower: %d" % self.__engine.horsepower
-        print "tire size: %d\'" % self.__wheels[0].size
+        # super().__init__()  # ok in Python 3.x, not in 2.x
+        super(self.__class__, self).__init__()  # also ok in Python 2.x
+        self.product = ConeIceCream()
+        self.toppings = "hazelnuts"
 
 
-class Builder:
-
-    """ Creates various parts of a vehicle.
-    This class is responsible for constructing all
-    the parts for a vehicle.
+class CupIceCreamBuilder(Builder):
+    """Concrete Builder 2.
+    Esta clase ensambla el producto implementando la interfaz de Builder.
+    Define y realiza un seguimiento de la representación que crea.
     """
 
-    def getWheel(self): pass
-    def getEngine(self): pass
-    def getBody(self): pass
+    def __init__(self):
+        # super().__init__()  # ok in Python 3.x, not in 2.x
+        super(self.__class__, self).__init__()  # also ok in Python 2.x
+        self.product = CupIceCream()
+        self.toppings = "chocolate chips"
 
 
-class JeepBuilder(Builder):
+class Director(object):
+    """Construye un objeto usando la interfaz de Builder"""
 
-    """ Concrete Builder implementation.
-    This class builds parts for Jeep's SUVs.
-    """
+    def __init__(self, builder):
+        self.builder = builder
 
-    def getWheel(self):
-        wheel = Wheel()
-        wheel.size = 22
-        return wheel
+    def build_product(self, flavors):
+        """
+        Prepare el producto y finalmente devuélvalo al cliente.
+        La clase de Constructor definida anteriormente es una "interfaz fluida", por lo que podemos usar
+        método de encadenamiento
+        Parámetros
+        ----------
+        flavors: lista
+        return
+        -------
+        ConeIceCream o CupIceCream
+        """
+        return (
+            self.builder.set_flavors(flavors).set_toppings().add_spoon().get_product()
+        )
 
-    def getEngine(self):
-        engine = Engine()
-        engine.horsepower = 400
-        return engine
 
-    def getBody(self):
-        body = Body()
-        body.shape = "SUV"
-        return body
+# Client: crea un objeto Director y lo configura con un objeto Builder.
 
-class NissanBuilder(Builder):
-
-    """ Concrete Builder implementation.
-    This class builds parts for Nissan's family cars.
-    """
-
-    def getWheel(self):
-        wheel = Wheel()
-        wheel.size = 16
-        return wheel
-
-    def getEngine(self):
-        engine = Engine()
-        engine.horsepower = 85
-        return engine
-
-    def getBody(self):
-        body = Body()
-        body.shape = "hatchback"
-        return body
-
-# Car parts
-class Wheel:
-    size = None
-
-class Engine:
-    horsepower = None
-
-class Body:
-    shape = None
 
 def main():
-    jeepBuilder = JeepBuilder()
-    nissanBuilder = NissanBuilder()
+    director = Director(ConeIceCreamBuilder())
+    product = director.build_product(["chocolate", "vanilla", "banana"])
+    print(product)
 
-    director = Director()
+    director = Director(CupIceCreamBuilder())
+    product = director.build_product(["lemon", "strawberry"])
+    print(product)
 
-    # Build Jeep
-    print "Jeep"
-    director.setBuilder(jeepBuilder)
-    jeep = director.getCar()
-    jeep.specification()
+    builder = ConeIceCreamBuilder()
+    director = Director(builder)
+    builder.toppings = None  # El ConeIceCreamBuilder no tiene más ingredientes!
+    product = director.build_product(["chocolate", "vanilla", "banana"])
+    print(product)
 
-    print ""
-
-    # Build Nissan
-    print "Nissan"
-    director.setBuilder(nissanBuilder)
-    nissan = director.getCar()
-    nissan.specification()
 
 if __name__ == "__main__":
-main()
+    main()
