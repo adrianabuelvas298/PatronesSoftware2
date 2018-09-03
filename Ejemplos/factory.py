@@ -1,3 +1,5 @@
+#Referencias: https://stackoverflow.com/questions/50435760/factory-method-broken-into-modules
+
 from __future__ import generators
 import random
 
